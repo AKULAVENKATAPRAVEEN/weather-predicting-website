@@ -6,7 +6,7 @@ A clean and responsive weather forecast web app that lets users search for real-
 
 👉 [View Live on Netlify](https://praveen-weather-predicting-website.netlify.app/)
 
-*Replace with your actual Netlify URL.*
+
 
 ## 🔥 Features
 
