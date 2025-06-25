@@ -6,8 +6,7 @@ async function getWeather() {
     return;
   }
 
-  // ✅ Use your AWS API Gateway endpoint here (NO API KEY NEEDED!)
-  const url = `https://wuvh6h9774.execute-api.ap-south-1.amazonaws.com/prod/getWeather?city=kakinada`;
+  const url = `https://wuvh6h9774.execute-api.ap-south-1.amazonaws.com/prod/getWeather?city=${city}`;
 
   try {
     document.getElementById("weatherInfo").innerHTML = "<p>Loading...</p>";
