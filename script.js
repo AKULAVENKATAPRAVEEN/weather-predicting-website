@@ -1,21 +1,19 @@
 async function getWeather() {
   const city = document.getElementById("cityInput").value.trim();
-  
-  // Validate input
+
   if (!city) {
     document.getElementById("weatherInfo").innerHTML = "<p>Please enter a city name</p>";
     return;
   }
 
-  const apikey = "8924c23c3d5ececf544fa04155149e3a"
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+  // ✅ Use your AWS API Gateway endpoint here (NO API KEY NEEDED!)
+  const url = `https://<your-api-id>.execute-api.ap-south-1.amazonaws.com/prod/getWeather?city=${city}`;
 
   try {
-    // Show loading state
     document.getElementById("weatherInfo").innerHTML = "<p>Loading...</p>";
-    
+
     const response = await fetch(url);
-    
+
     if (!response.ok) {
       if (response.status === 404) {
         throw new Error("City not found");
@@ -24,8 +22,7 @@ async function getWeather() {
     }
 
     const data = await response.json();
-    
-    // Check if weather data exists
+
     if (!data.weather || data.weather.length === 0) {
       throw new Error("Weather data not available");
     }
@@ -39,6 +36,7 @@ async function getWeather() {
       <p><strong>Wind:</strong> ${data.wind.speed} m/s</p>
     `;
     document.getElementById("weatherInfo").innerHTML = weatherInfo;
+
   } catch (error) {
     console.error("Fetch error:", error);
     document.getElementById("weatherInfo").innerHTML = `<p>${error.message}</p>`;
